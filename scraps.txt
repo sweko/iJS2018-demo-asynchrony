@@ -1,0 +1,89 @@
+==== set-timeout-0 =====
+console.log("Един");
+console.log("Два");
+console.log("Три");
+console.log("Четири");
+
+==== set-timeout-1 =====
+var names = ["Един", "Два", "Три", "Четири"];
+names.forEach(name => console.log(name));
+
+==== set-timeout-2 =====
+console.log("Един");
+setTimeout(function() {
+    console.log("Два");
+    setTimeout(function() {
+        setTimeout(function() {
+            setTimeout(function() {
+                console.log("Пет");
+            }, 1000);
+            console.log("Четири");
+        }, 1000);
+        console.log("Три");
+    }, 1000);
+}, 1000);
+
+==== set-timeout-3 =====
+function delay(ms) {
+    return new Promise(resolve => setTimeout(()=>resolve(), ms));
+}
+
+console.log("Един");
+
+delay(1000)
+    .then(() => console.log("Два"))
+    .then(() => delay(1000))
+    .then(() => console.log("Три"))
+    .then(() => delay(1000))
+    .then(() => console.log("Четири"))
+    .then(() => delay(1000))
+    .then(() => console.log("peti"))
+==== set-timeout-3 =====
+function delay(ms) {
+    return new Promise(resolve => setTimeout(()=>resolve(), ms));
+}
+
+async function edinDva(){
+    console.log("Един");
+    await delay(1000);
+    console.log("Два");
+    await delay(1000);
+    console.log("Три");
+    await delay(1000);
+    console.log("Четири");
+    await delay(1000);
+    console.log("peti");
+}
+
+edinDva();
+
+
+==== layered-cb =====
+
+class InnerCbLayer {
+    getInnerValue() {
+        return "inner";
+    }
+}
+
+class MidCbLayer {
+    constructor(public inner: InnerCbLayer) { }
+
+    getMidValue() {
+        return "middle-" + this.inner.getInnerValue();
+    }
+}
+
+class OuterCbLayer {
+    constructor(public middle: MidCbLayer) { }
+
+    getOuterValue() {
+        return "outer-" + this.middle.getMidValue();
+    }
+}
+
+let innerCb = new InnerCbLayer();
+let midCb = new MidCbLayer(inner);
+let outerCb = new OuterCbLayer(mid);
+
+console.log(outerCb.getOuterValue());
