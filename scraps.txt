@@ -1,25 +1,52 @@
+==== regular-fibonacci ===
+document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("start").addEventListener("click", () => {
+                global = 0;
+                fibbonaci(32);
+            })
+        })
+
+        let global = 0;
+
+        function fibbonaci(n) {
+            global++;
+            document.getElementById("result").textContent = global;
+            if (n === 0) {
+                return 1;
+            }
+            if (n === 1) {
+                return 1;
+            }
+
+            return fibbonaci(n - 1) + fibbonaci(n - 2);
+        }
+
 ==== set-timeout-0 =====
-console.log("Един");
-console.log("Два");
-console.log("Три");
-console.log("Четири");
+console.log("One");
+console.log("Two");
+console.log("Three");
+console.log("Four");
+console.log("Five");
 
 ==== set-timeout-1 =====
-var names = ["Един", "Два", "Три", "Четири"];
+var names = ["One", "Two", "Three", "Four", "Five"];
 names.forEach(name => console.log(name));
 
 ==== set-timeout-2 =====
-console.log("Един");
+
+const getRandomInterval = (from: num) => Math.Random()
+
+console.log("One");
 setTimeout(function() {
-    console.log("Два");
+    console.log("Two");
     setTimeout(function() {
         setTimeout(function() {
             setTimeout(function() {
-                console.log("Пет");
+                console.log("Five");
             }, 1000);
-            console.log("Четири");
+            console.log("Four");
         }, 1000);
-        console.log("Три");
+        console.log("Three");
     }, 1000);
 }, 1000);
 
@@ -28,34 +55,35 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(()=>resolve(), ms));
 }
 
-console.log("Един");
+console.log("One");
 
 delay(1000)
-    .then(() => console.log("Два"))
+    .then(() => console.log("Two"))
     .then(() => delay(1000))
-    .then(() => console.log("Три"))
+    .then(() => console.log("Three"))
     .then(() => delay(1000))
-    .then(() => console.log("Четири"))
+    .then(() => console.log("Four"))
     .then(() => delay(1000))
-    .then(() => console.log("peti"))
+    .then(() => console.log("Five"))
+
 ==== set-timeout-3 =====
 function delay(ms) {
     return new Promise(resolve => setTimeout(()=>resolve(), ms));
 }
 
-async function edinDva(){
-    console.log("Един");
+async function countEm(){
+    console.log("One");
     await delay(1000);
-    console.log("Два");
+    console.log("Two");
     await delay(1000);
-    console.log("Три");
+    console.log("Three");
     await delay(1000);
-    console.log("Четири");
+    console.log("Four");
     await delay(1000);
-    console.log("peti");
+    console.log("Five");
 }
 
-edinDva();
+countEm();
 
 
 ==== layered-cb =====

@@ -1,16 +1,26 @@
-function delay(ms) {
+// var names = ["One", "Two", "Three", "Four", "Five"];
+// names.forEach(name => console.log(name));
+
+function delay(ms: number = 1000) {
     return new Promise(resolve => setTimeout(()=>resolve(), ms));
 }
 
-async function edinDva(){
 
-    const array = ["Един","Два","Три","Четири","Пет"];
+async function counting() {
+    console.log("One");
 
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        console.log(element);
-        await delay(1000);            
-    }
+    await delay();
+    console.log("Two");
+
+    await delay();
+    console.log("Three");
+
+    await delay();
+    console.log("Four");
+
+    await delay();
+    console.log("Five");
 }
 
-edinDva();
+
+counting();
